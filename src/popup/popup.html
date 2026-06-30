@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Nerdify</title>
+<link rel="stylesheet" href="popup.css" />
+</head>
+<body>
+  <div class="wrap">
+    <header class="head">
+      <div class="prompt-line">
+        <span class="prompt-glyph">&#xf120;</span>
+        <span class="title">nerdify</span>
+        <span class="cursor">&#9608;</span>
+      </div>
+      <p class="sub">Render this site in a Nerd Font</p>
+    </header>
+
+    <section class="block">
+      <div class="row-label">
+        <span class="key">global</span>
+        <label class="switch">
+          <input type="checkbox" id="globalToggle" />
+          <span class="slider"></span>
+        </label>
+      </div>
+      <p class="hint" id="globalHint">Off everywhere by default</p>
+    </section>
+
+    <section class="block">
+      <div class="row-label">
+        <span class="key">this site</span>
+        <span class="site-name" id="siteName">—</span>
+      </div>
+      <div class="site-buttons" id="siteButtons">
+        <button class="site-btn" data-value="inherit">Inherit</button>
+        <button class="site-btn" data-value="on">Force on</button>
+        <button class="site-btn" data-value="off">Force off</button>
+      </div>
+    </section>
+
+    <section class="block">
+      <div class="row-label">
+        <span class="key">scope</span>
+      </div>
+      <div class="scope-buttons" id="scopeButtons">
+        <button class="scope-btn" data-value="all">All text</button>
+        <button class="scope-btn" data-value="code">Code only</button>
+      </div>
+    </section>
+
+    <section class="block fonts-block">
+      <div class="row-label">
+        <span class="key">font</span>
+      </div>
+      <div class="font-list" id="fontList">
+        <button class="font-option" data-font="anonymicepronerdfontmono" style="font-family:'AnonymicePro Nerd Font Mono'">
+          <span class="font-glyphs">  </span>
+          <span class="font-name">AnonymicePro Mono</span>
+        </button>
+        <button class="font-option" data-font="caskaydiacovenerdfontmono" style="font-family:'CaskaydiaCove Nerd Font Mono'">
+          <span class="font-glyphs">  </span>
+          <span class="font-name">CaskaydiaCove Mono</span>
+        </button>
+        <button class="font-option" data-font="firacodenerdfontmono" style="font-family:'FiraCode Nerd Font Mono'">
+          <span class="font-glyphs">  </span>
+          <span class="font-name">FiraCode Mono</span>
+        </button>
+        <button class="font-option" data-font="hacknerdfontmono" style="font-family:'Hack Nerd Font Mono'">
+          <span class="font-glyphs">  </span>
+          <span class="font-name">Hack Mono</span>
+        </button>
+        <button class="font-option" data-font="iosevkanerdfontmono" style="font-family:'Iosevka Nerd Font Mono'">
+          <span class="font-glyphs">  </span>
+          <span class="font-name">Iosevka Mono</span>
+        </button>
+        <button class="font-option" data-font="jetbrainsmononerdfontmono" style="font-family:'JetBrainsMono Nerd Font Mono'">
+          <span class="font-glyphs">  </span>
+          <span class="font-name">JetBrainsMono Mono</span>
+        </button>
+        <button class="font-option" data-font="meslolgsnerdfontmono" style="font-family:'MesloLGS Nerd Font Mono'">
+          <span class="font-glyphs">  </span>
+          <span class="font-name">MesloLGS Mono</span>
+        </button>
+        <button class="font-option" data-font="saucecodepronerdfontmono" style="font-family:'SauceCodePro Nerd Font Mono'">
+          <span class="font-glyphs">  </span>
+          <span class="font-name">SauceCodePro Mono</span>
+        </button>
+        <button class="font-option" data-font="victormononerdfontmono" style="font-family:'VictorMono Nerd Font Mono'">
+          <span class="font-glyphs">  </span>
+          <span class="font-name">VictorMono Mono</span>
+        </button>
+      </div>
+    </section>
+
+    <footer class="foot">
+      <span class="foot-glyph">&#xf818;</span>
+      <span>Chromium-based browsers · Chrome, Edge, Brave</span>
+    </footer>
+  </div>
+  <link rel="stylesheet" href="../fonts.css" />
+  <script src="popup.js"></script>
+</body>
+</html>

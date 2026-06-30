@@ -1,0 +1,262 @@
+:root {
+  --bg: #0d1117;
+  --bg-raised: #161b22;
+  --bg-hover: #1c2331;
+  --border: #2a3140;
+  --text: #c9d1d9;
+  --text-dim: #6e7681;
+  --accent: #7ee787;
+  --accent-dim: #2f6b3a;
+  --warn: #ff7b72;
+  --mono: "JetBrainsMono Nerd Font", ui-monospace, monospace;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  width: 300px;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: 13px;
+}
+
+.wrap {
+  padding: 14px 16px 12px;
+}
+
+.head {
+  margin-bottom: 14px;
+}
+
+.prompt-line {
+  display: flex;
+  align-items: baseline;
+  gap: 7px;
+}
+
+.prompt-glyph {
+  color: var(--accent);
+  font-size: 14px;
+}
+
+.title {
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--text);
+}
+
+.cursor {
+  color: var(--accent);
+  animation: blink 1.1s steps(1) infinite;
+  font-size: 11px;
+}
+
+@keyframes blink {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cursor { animation: none; opacity: 1; }
+}
+
+.sub {
+  margin: 4px 0 0;
+  color: var(--text-dim);
+  font-size: 11.5px;
+}
+
+.block {
+  border-top: 1px solid var(--border);
+  padding: 10px 0;
+}
+
+.row-label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.key {
+  color: var(--text-dim);
+  font-size: 11px;
+  text-transform: lowercase;
+  letter-spacing: 0.06em;
+}
+
+.key::before {
+  content: "# ";
+  color: var(--accent-dim);
+}
+
+.site-name {
+  color: var(--text);
+  font-size: 11.5px;
+  max-width: 170px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.hint {
+  margin: 6px 0 0;
+  color: var(--text-dim);
+  font-size: 10.5px;
+}
+
+/* Toggle switch */
+.switch {
+  position: relative;
+  width: 34px;
+  height: 19px;
+  flex-shrink: 0;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  inset: 0;
+  background: var(--bg-hover);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.slider::before {
+  content: "";
+  position: absolute;
+  width: 13px;
+  height: 13px;
+  left: 2px;
+  top: 2px;
+  background: var(--text-dim);
+  border-radius: 50%;
+  transition: transform 0.15s ease, background 0.15s ease;
+}
+
+.switch input:checked + .slider {
+  background: var(--accent-dim);
+  border-color: var(--accent);
+}
+
+.switch input:checked + .slider::before {
+  transform: translateX(15px);
+  background: var(--accent);
+}
+
+/* Site / scope button groups */
+.site-buttons,
+.scope-buttons {
+  display: flex;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.site-btn,
+.scope-btn {
+  flex: 1;
+  background: var(--bg-raised);
+  border: 1px solid var(--border);
+  color: var(--text-dim);
+  font-family: var(--mono);
+  font-size: 10.5px;
+  padding: 6px 4px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: border-color 0.12s ease, color 0.12s ease, background 0.12s ease;
+}
+
+.site-btn:hover,
+.scope-btn:hover {
+  background: var(--bg-hover);
+  color: var(--text);
+}
+
+.site-btn.active,
+.scope-btn.active {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: rgba(126, 231, 135, 0.08);
+}
+
+/* Font list */
+.fonts-block {
+  padding-bottom: 4px;
+}
+
+.font-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: 8px;
+}
+
+.font-option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  background: var(--bg-raised);
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 8px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  text-align: left;
+  transition: border-color 0.12s ease, background 0.12s ease;
+}
+
+.font-option:hover {
+  background: var(--bg-hover);
+}
+
+.font-option.active {
+  border-color: var(--accent);
+  background: rgba(126, 231, 135, 0.07);
+}
+
+.font-option.active .font-name {
+  color: var(--accent);
+}
+
+.font-glyphs {
+  font-size: 13px;
+  color: var(--text-dim);
+  letter-spacing: 3px;
+}
+
+.font-option.active .font-glyphs {
+  color: var(--accent);
+}
+
+.font-name {
+  font-size: 12px;
+  color: var(--text);
+}
+
+/* Footer */
+.foot {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  border-top: 1px solid var(--border);
+  padding-top: 10px;
+  margin-top: 2px;
+  color: var(--text-dim);
+  font-size: 10px;
+}
+
+.foot-glyph {
+  color: var(--text-dim);
+  font-size: 11px;
+}

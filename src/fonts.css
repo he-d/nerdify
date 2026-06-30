@@ -1,0 +1,94 @@
+/* Nerdify — bundled font declarations (auto-generated, do not edit by hand) */
+
+@font-face {
+  font-family: "AnonymicePro Nerd Font Mono";
+  src: url("fonts/anonymicepronerdfontmono.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "CaskaydiaCove Nerd Font Mono";
+  src: url("fonts/caskaydiacovenerdfontmono.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "FiraCode Nerd Font Mono";
+  src: url("fonts/firacodenerdfontmono.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Hack Nerd Font Mono";
+  src: url("fonts/hacknerdfontmono.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Iosevka Nerd Font Mono";
+  src: url("fonts/iosevkanerdfontmono.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "JetBrainsMono Nerd Font Mono";
+  src: url("fonts/jetbrainsmononerdfontmono.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "MesloLGS Nerd Font Mono";
+  src: url("fonts/meslolgsnerdfontmono.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "SauceCodePro Nerd Font Mono";
+  src: url("fonts/saucecodepronerdfontmono.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "VictorMono Nerd Font Mono";
+  src: url("fonts/victormononerdfontmono.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Applied/removed dynamically by content.js via these marker classes */
+
+html.nf-active-all,
+html.nf-active-all * {
+  font-family: var(--nf-font-family, "AnonymicePro Nerd Font Mono"), monospace !important;
+}
+
+html.nf-active-code pre,
+html.nf-active-code code,
+html.nf-active-code kbd,
+html.nf-active-code samp,
+html.nf-active-code pre *,
+html.nf-active-code code *,
+html.nf-active-code textarea[class*="code"],
+html.nf-active-code .CodeMirror,
+html.nf-active-code .cm-editor,
+html.nf-active-code .monaco-editor,
+html.nf-active-code .monaco-editor * {
+  font-family: var(--nf-font-family, "AnonymicePro Nerd Font Mono"), monospace !important;
+}
