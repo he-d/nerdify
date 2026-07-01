@@ -1,40 +1,99 @@
 # Nerdify
 
-A browser extension that renders the current website using a Nerd Font of
-your choice. Works unmodified in Chrome, Edge, and Brave, since all three
-support Manifest V3 Chrome extensions natively.
+Render any website in a **Nerd Font** of your choice — with a global toggle,
+per-site overrides, and an all-text / code-only scope. Built on Manifest V3, so
+it runs unmodified in **Chrome, Edge, and Brave**.
 
-## Project layout
+> Nerd Fonts are patched monospace coding fonts. Nerdify is at its best on
+> code-heavy pages (GitHub, docs, Stack Overflow) — see
+> [What to expect](#what-to-expect).
+
+## Install
+
+<!-- Replace the placeholders below with the real listing URLs once published. -->
+
+- **Chrome / Brave** — [Chrome Web Store](#) *(link pending review)*
+- **Edge** — [Microsoft Edge Add-ons](#) *(link pending review)*
+
+Brave installs Chrome extensions directly from the Chrome Web Store — no
+separate listing needed.
+
+Prefer to run it yourself? See [Build from source](#build-from-source).
+
+## Features
+
+- **Global on/off** across all sites
+- **Per-site override** — `Inherit` follows the global toggle, `Force on` /
+  `Force off` pin the behaviour for the current domain regardless of the global
+  setting
+- **Scope** — `All text` restyles every element; `Code only` limits the change
+  to code blocks and editor widgets (`pre`, `code`, `kbd`, `samp`, CodeMirror,
+  Monaco)
+- **Font picker** — choose from the bundled Nerd Fonts; each option previews
+  itself in its own typeface
+- Settings sync via `chrome.storage.sync` and apply immediately to open tabs
+
+## Usage
+
+Click the toolbar icon to open the popup and adjust **global**, **this site**,
+**scope**, and **font**. Changes take effect right away — no reload needed.
+
+Pin the icon to your toolbar for quick access.
+
+## What to expect
+
+Nerd Fonts are patched **monospace** fonts. Applying one to an ordinary website
+(news, blogs) turns all text monospaced — readable, but different from the
+site's intended typography. That's why the **Code only** scope exists.
+
+The special icon glyphs Nerd Fonts are known for (file-type icons, git symbols,
+etc.) only render where the page's own text already contains those Unicode
+codepoints. Switching the font does **not** inject new icons — it only changes
+how existing characters are drawn.
+
+## Privacy
+
+Nerdify does **not** collect, transmit, or sell any data. There are no analytics
+and no network requests. Your preferences (font choice, scope, per-site
+overrides) are stored with the browser's own `chrome.storage.sync` and never
+leave your browser profile. The `<all_urls>` host permission exists solely so
+the font can be applied to whatever site you enable it on — page content is
+never read or sent anywhere.
+
+## Build from source
+
+The bundled `.woff2` fonts are committed to the repo, so the extension works
+immediately after a fresh clone — you only need the build step below if you want
+to add, remove, or swap the fonts.
+
+### Project layout
 
 ```
 nerdify/
   fonts-source/        Drop your .ttf / .otf Nerd Font files here
   scripts/
-    build_fonts.py      Converts fonts-source/*.ttf -> src/fonts/*.woff2
-                         and regenerates fonts.css, content.js, and
-                         popup.html to match
-  src/                  The actual extension (load this folder unpacked)
+    build_fonts.py     Converts fonts-source/*.ttf -> src/fonts/*.woff2 and
+                       regenerates fonts.css, content.js, popup.html/js to match
+  src/                 The actual extension (load this folder unpacked)
     manifest.json
     background.js
     content.js
-    fonts.css            auto-generated, do not edit by hand
-    fonts/               auto-generated .woff2 files
+    fonts.css          auto-generated, do not edit by hand
+    fonts/             auto-generated .woff2 files (committed)
     icons/
     popup/
-      popup.html         font-picker buttons auto-generated in place
+      popup.html       font-picker buttons auto-generated in place
       popup.css
       popup.js
 ```
 
-## Setup
+### Regenerating the fonts
 
-1. Put your Nerd Font `.ttf`/`.otf` files into `fonts-source/`. This zip
-   already ships with 5 example fonts in there (JetBrainsMono, FiraCode,
-   Hack, CaskaydiaCove, MesloLGL) so the script has something to run on
-   out of the box — swap them out for your own files from your
-   `nerdfonts` folder whenever you're ready; the script picks up
-   whatever `.ttf`/`.otf` files it finds, however many there are.
-2. Install the conversion script's dependency:
+1. Put your Nerd Font `.ttf` / `.otf` files into `fonts-source/`. The repo ships
+   with several example fonts so the script has something to run on out of the
+   box — swap them for your own whenever you like; it picks up whatever files it
+   finds, however many.
+2. Install the conversion dependency:
    ```
    pip install fonttools brotli
    ```
@@ -42,81 +101,36 @@ nerdify/
    ```
    python scripts/build_fonts.py
    ```
-   This converts every font in `fonts-source/` to `.woff2`, writes them
-   into `src/fonts/`, and regenerates `src/fonts.css`, the `FONT_MAP` in
-   `src/content.js`, and the font-picker buttons in
-   `src/popup/popup.html` — all pulling each font's real family name
-   from its own internal name table, so naming stays accurate no matter
-   how the source files are named.
-4. Re-run the script any time you add, remove, or swap fonts in
-   `fonts-source/`. It's safe to run repeatedly — it fully regenerates
-   the derived files each time rather than appending to them. The
-   generated `.woff2` files in `src/fonts/` are committed to the repo,
-   so the extension works immediately after a fresh clone without
-   needing to run the script first.
+   This converts every font in `fonts-source/` to `.woff2`, writes them into
+   `src/fonts/`, and regenerates `src/fonts.css`, the `FONT_MAP` in
+   `src/content.js`, and the font-picker buttons in `src/popup/popup.html` —
+   each font's real family name is pulled from its own internal name table, so
+   naming stays accurate regardless of how the source files are named.
+4. Re-run it any time you change the fonts. It's safe to run repeatedly — it
+   fully regenerates the derived files rather than appending to them.
 
-## Load the extension (Developer Mode — same flow for all three browsers)
+### Load unpacked (Chrome / Edge / Brave)
 
-### Chrome
-1. Go to `chrome://extensions`
-2. Toggle **Developer mode** on (top right)
-3. Click **Load unpacked**
-4. Select the `nerdify/src` folder
+Same flow for all three — go to the extensions page, enable **Developer mode**,
+click **Load unpacked**, and select the `nerdify/src` folder:
 
-### Edge
-1. Go to `edge://extensions`
-2. Toggle **Developer mode** on (left sidebar)
-3. Click **Load unpacked**
-4. Select the `nerdify/src` folder
+| Browser | Extensions page       |
+| ------- | --------------------- |
+| Chrome  | `chrome://extensions` |
+| Edge    | `edge://extensions`   |
+| Brave   | `brave://extensions`  |
 
-### Brave
-1. Go to `brave://extensions`
-2. Toggle **Developer mode** on (top right)
-3. Click **Load unpacked**
-4. Select the `nerdify/src` folder
-
-After loading, pin the extension icon to your toolbar. Whenever you
-re-run `build_fonts.py`, click the reload icon on the extension's card
-in the browser's extensions page to pick up the changes.
-
-## Usage
-
-Click the extension icon to open the popup:
-
-- **global** — flips the font override on/off across all sites
-- **this site** — overrides the global setting just for the current
-  domain (`Inherit` follows the global toggle, `Force on`/`Force off`
-  pin it regardless of the global setting)
-- **scope** — `All text` rewrites every element's font; `Code only`
-  restricts it to code blocks and editor widgets (`pre`, `code`, `kbd`,
-  `samp`, CodeMirror, Monaco)
-- **font** — pick which bundled Nerd Font to use; each option previews
-  itself in its own font
-
-Settings sync via `chrome.storage.sync`, so they follow you across
-devices signed into the same browser profile. Changes apply immediately
-to open tabs.
-
-## Notes on what to expect
-
-Nerd Fonts are patched **monospace** coding fonts. Applying one to an
-ordinary website (news articles, blogs, etc.) will make all text
-monospaced — readable, but stylistically different from the site's
-intended typography. It tends to look most natural on code-heavy pages
-like GitHub, documentation sites, or Stack Overflow, which is also why
-the "Code only" scope exists.
-
-The special icon glyphs Nerd Fonts are known for (file type icons, git
-symbols, etc.) only render where the page's actual text already
-contains those specific Unicode codepoints — switching the font does
-not inject new icons into existing page content, it just changes how
-existing characters are drawn.
+After re-running `build_fonts.py`, click the reload icon on the extension's card
+to pick up the changes.
 
 ## License
 
-Nerd Fonts are typically distributed under the SIL Open Font License.
-If you're bundling fonts from the official Nerd Fonts project
-(https://github.com/ryanoasis/nerd-fonts) or another OFL-licensed
-source, that license carries over to the generated `.woff2` files in
-`src/fonts/`. Check the license of whatever fonts you drop into
-`fonts-source/` before distributing this extension publicly.
+The extension code in this repository is provided as-is.
+
+Nerd Fonts are typically distributed under the **SIL Open Font License (OFL)**.
+If you bundle fonts from the official
+[Nerd Fonts project](https://github.com/ryanoasis/nerd-fonts) or another
+OFL-licensed source, that license carries over to the generated `.woff2` files
+in `src/fonts/`. Verify the license of whatever fonts you drop into
+`fonts-source/` before distributing the extension publicly — see
+[Publishing](#build-from-source) notes on font attribution.

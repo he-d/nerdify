@@ -9,3 +9,9 @@ Thumbs.db
 # Editor
 .vscode/
 .idea/
+
+# Local-only docs
+howToPublish.md
+
+# Build artifacts
+*.zip
