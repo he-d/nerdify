@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="assets/banner_nerdify.png" alt="Nerdify" width="640">
+</p>
+
 # Nerdify
 
 Render any website in a **Nerd Font** of your choice — with a global toggle,
@@ -125,12 +129,21 @@ to pick up the changes.
 
 ## License
 
-The extension code in this repository is provided as-is.
+Nerdify's own code (everything in this repo except the bundled fonts) is
+licensed under the **MIT License** — see [`LICENSE`](LICENSE).
 
-Nerd Fonts are typically distributed under the **SIL Open Font License (OFL)**.
-If you bundle fonts from the official
-[Nerd Fonts project](https://github.com/ryanoasis/nerd-fonts) or another
-OFL-licensed source, that license carries over to the generated `.woff2` files
-in `src/fonts/`. Verify the license of whatever fonts you drop into
-`fonts-source/` before distributing the extension publicly — see
-[Publishing](#build-from-source) notes on font attribution.
+The fonts in `src/fonts/` are third-party works under their **own** licenses,
+which MIT does not override. Full texts and per-font copyright/attribution ship
+inside the extension package in [`src/licenses/`](src/licenses/):
+
+- **SIL Open Font License 1.1** — Anonymous Pro, Cascadia Code, Fira Code,
+  Iosevka, JetBrains Mono, Source Code Pro, Victor Mono
+  ([`src/licenses/OFL-1.1.txt`](src/licenses/OFL-1.1.txt))
+- **MIT + Bitstream Vera License** — Hack (*not* OFL; see
+  [`src/licenses/NOTICE.md`](src/licenses/NOTICE.md))
+
+They live under `src/` so the store build (`Compress-Archive -Path .\src\*`)
+ships them alongside the font binaries — OFL and the Bitstream Vera license both
+require their text to travel with the fonts. If you change the fonts in
+`fonts-source/` and rebuild, verify each new font's license and update
+[`src/licenses/NOTICE.md`](src/licenses/NOTICE.md) before distributing publicly.
